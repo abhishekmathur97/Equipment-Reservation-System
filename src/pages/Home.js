@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import List from "../components/list/List";
+import List from "../components/List/List";
 
 const Home = () => {
     const equipmentList = useSelector(state => state.equipment.equipmentList);
