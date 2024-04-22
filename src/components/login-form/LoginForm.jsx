@@ -1,22 +1,40 @@
-// LoginForm.js
 import React, { useState } from 'react';
-import { TextField, Button, Typography } from '@mui/material';
-import './LoginForm.module.css'; // If you have custom CSS
+import { useDispatch, useSelector } from 'react-redux';
+import { login, signup } from '../../utils/api';
+import { userActions } from '../../store/userSlice';
+import { Navigate, useNavigate } from 'react-router-dom';
 
 const LoginForm = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [loggedIn, setLoggedIn] = useState(false);
-  const [isSignUp, setIsSignUp] = useState(false); // State to track sign-in or sign-up page
+  const [isSignUp, setIsSignUp] = useState(false);
+
+  const isAuthorized = useSelector(state => state.user.isAuthorized);
+  const dispatch = useDispatch();
+  
+  const navigate = useNavigate();
 
   const handleLogin = (e) => {
     e.preventDefault();
-    // Perform login logic here, e.g., sending credentials to server for validation
-    if (username === 'example' && password === 'password') {
-      setLoggedIn(true);
-      alert('Login successful!');
-    } else {
-      alert('Invalid username or password');
+
+    try {
+      // isSignUp ?
+      //   signup().then(res => {
+      //     if (res.json().status === 200) {
+      //       dispatch(userActions.authorize());
+      //       localStorage.setItem('token', res.json().token);
+      //     }
+      //   }) :
+      //   login().then(res => {
+      //     if (res.status === 200) {
+      //       dispatch(userActions.authorize());
+      //       localStorage.setItem('token', res.json().token);
+      //     }
+      //   });
+        localStorage.setItem('token', 'test');
+        dispatch(userActions.authorize());
+    } catch (error) {
+      console.log(error);
     }
   };
 
@@ -28,35 +46,29 @@ const LoginForm = () => {
 
   return (
     <div className="container">
-      {loggedIn ? (
-        <Typography variant="h2" gutterBottom>Welcome, {username}!</Typography>
+      {isAuthorized ? (
+        <Navigate to='/' replace />
       ) : (
-        <form onSubmit={handleLogin}>
-          <TextField
+        <form onSubmit={handleLogin} className='column'>
+          <input
             label="Username"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
-            variant="outlined"
-            margin="normal"
-            fullWidth
             required
           />
-          <TextField
+          <input
             label="Password"
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            variant="outlined"
-            margin="normal"
-            fullWidth
             required
           />
-          <Button type="submit" variant="contained" color="primary" fullWidth>
+          <button type="submit">
             {isSignUp ? 'Sign Up' : 'Sign In'}
-          </Button>
-          <Button onClick={handleToggleMode} fullWidth>
+          </button>
+          <a onClick={handleToggleMode}>
             {isSignUp ? 'Already have an account? Sign In' : 'Don\'t have an account? Sign Up'}
-          </Button>
+          </a>
         </form>
       )}
     </div>

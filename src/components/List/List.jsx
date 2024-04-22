@@ -1,33 +1,32 @@
 import defaultPNG from '../../assets/default.png';
+import { Link } from 'react-router-dom';
 
 const List = ({ items }) => {
     return (
         <div>
         {
             items.length ? items.map((item, id) => (
-                <div key={id} className="list__item">  
+                <Link key={id} to={`/equipment/${item.id}`} className="list__item">  
                     {
                         Object.keys(item).map((key, id) => (
-                            <>
+                            <div key={id} className={key === 'image' ? 'item__img_container' : ''}>
                             {
                                 key === 'image' ? (
-                                    <div key={id} className='item__img_container'>
-                                        <img src={'image' in item ?
-                                            item['image'].length ? 
-                                            item['image'] : defaultPNG : 
-                                            defaultPNG} className='item__img'/>
-                                    </div>   
+                                    <img src={'image' in item ?
+                                        item['image'].length ? 
+                                        item['image'] : defaultPNG : 
+                                        defaultPNG} className='item__img'/>
                                 ) : (
-                                    <div key={id}>
+                                    <>
                                         <h4>{key}</h4>
                                         <span>{item[key]}</span>
-                                    </div>
+                                    </>
                                 )
                             }
-                            </>
+                            </div>
                         ))
                     }
-                </div>
+                </Link>
             )) : <p>No items to display</p>
         }
         </div>

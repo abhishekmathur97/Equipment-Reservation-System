@@ -29,6 +29,14 @@ header {
   align-items: center;
 }
 
+.column {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+
 img {
   height: 100%;
   object-fit: fit-content;
@@ -50,6 +58,11 @@ a:hover {
   gap: 15px;
 }
 
+.list__item:hover {
+  cursor: pointer;
+  background-color: rgb(75, 75, 75, 0.1);
+}
+
 .item__img_container {
   height: 80px;
   width: 80px;
@@ -62,4 +75,29 @@ a:hover {
   height: 100%;
   transform: translateX(-31px);
   object-fit: fit-content;
+}
+
+.form__container {
+  box-sizing: border-box;
+  height: calc(100vh - 60px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nav {
+  display: flex;
+  gap: 20px;
+}
+
+.link, a {
+  text-decoration: none;
+}
+
+.link {
+  color: white;
+}
+
+a {
+  color: black;
 }

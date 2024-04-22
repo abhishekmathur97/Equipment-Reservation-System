@@ -1,7 +1,8 @@
 import { useSelector } from "react-redux";
-import List from "../components/list/List";
+import { Navigate } from "react-router-dom";
+import List from '../components/list/List';
 
-const Home = () => {
+const HomePage = () => {
     const equipmentList = useSelector(state => state.equipment.equipmentList);
 
     return (
@@ -11,4 +12,4 @@ const Home = () => {
     )
 }
 
-export default Home;
+export default HomePage;
