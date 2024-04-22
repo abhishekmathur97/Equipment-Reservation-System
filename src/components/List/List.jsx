@@ -1,6 +1,6 @@
 import defaultPNG from '../../assets/default.png';
 import { Link } from 'react-router-dom';
-import StatusTag from '../StatusTag/StatusTag';
+import StatusTag from '../status-tag/StatusTag';
 
 const List = ({ items, tags = false }) => {
     return (
