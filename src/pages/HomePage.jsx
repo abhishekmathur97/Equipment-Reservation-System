@@ -7,7 +7,7 @@ const HomePage = () => {
 
     return (
         <section>
-            <List items={equipmentList}/>
+            <List items={equipmentList} tags={true}/>
         </section>
     )
 }

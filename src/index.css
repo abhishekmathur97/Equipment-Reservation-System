@@ -56,6 +56,7 @@ a:hover {
   border-radius: 15px;
   box-shadow: 5px 5px 5px rgb(219, 219, 219, 0.8);
   gap: 15px;
+  position: relative;
 }
 
 .list__item:hover {
@@ -100,4 +101,33 @@ a:hover {
 
 a {
   color: black;
+}
+
+.tag {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  border-radius: 15px;
+  font-size: 14px;
+  padding: 5px 10px;
+}
+
+.success {
+  background-color: rgb(105, 145, 73);
+  color: white;
+}
+
+.error {
+  background-color: red;
+  color: white;
+}
+
+.default {
+  background-color: rgb(224, 224, 106);
+  color: black;
+}
+
+.warning {
+  background-color: brown;
+  color: white;
 }

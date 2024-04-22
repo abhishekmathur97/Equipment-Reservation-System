@@ -1,7 +1,8 @@
 import defaultPNG from '../../assets/default.png';
 import { Link } from 'react-router-dom';
+import StatusTag from '../StatusTag/StatusTag';
 
-const List = ({ items }) => {
+const List = ({ items, tags = false }) => {
     return (
         <div>
         {
@@ -25,6 +26,9 @@ const List = ({ items }) => {
                             }
                             </div>
                         ))
+                    }
+                    {
+                        tags && <StatusTag status={item.status}/>
                     }
                 </Link>
             )) : <p>No items to display</p>
