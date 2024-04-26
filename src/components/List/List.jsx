@@ -2,12 +2,13 @@ import defaultPNG from '../../assets/default.png';
 import { Link } from 'react-router-dom';
 import StatusTag from '../status-tag/StatusTag';
 
-const List = ({ items, tags = false }) => {
+const List = ({ items, tags = false, children }) => {
     return (
         <div>
         {
             items.length ? items.map((item, id) => (
                 <Link key={id} to={`/equipment/${item.id}`} className="list__item">  
+                    <div className='list__item_content'>
                     {
                         Object.keys(item).map((key, id) => (
                             <div key={id} className={key === 'image' ? 'item__img_container' : ''}>
@@ -30,6 +31,8 @@ const List = ({ items, tags = false }) => {
                     {
                         tags && <StatusTag status={item.status}/>
                     }
+                    </div>
+                    { children }
                 </Link>
             )) : <p>No items to display</p>
         }

@@ -5,34 +5,34 @@ import { userActions } from '../../store/userSlice';
 import { Navigate, useNavigate } from 'react-router-dom';
 
 const LoginForm = () => {
-  const [username, setUsername] = useState('');
+  const [email, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [isSignUp, setIsSignUp] = useState(false);
 
   const isAuthorized = useSelector(state => state.user.isAuthorized);
   const dispatch = useDispatch();
-  
+
   const navigate = useNavigate();
 
   const handleLogin = (e) => {
     e.preventDefault();
 
     try {
+      // with backend
       // isSignUp ?
-      //   signup().then(res => {
-      //     if (res.json().status === 200) {
-      //       dispatch(userActions.authorize());
-      //       localStorage.setItem('token', res.json().token);
-      //     }
+      //   signup(email, password).then(res => {
+      //     dispatch(userActions.authorize());
+      //     localStorage.setItem('token', res.token);
+      //     navigate('/');
       //   }) :
-      //   login().then(res => {
-      //     if (res.status === 200) {
-      //       dispatch(userActions.authorize());
-      //       localStorage.setItem('token', res.json().token);
-      //     }
+      //   login(email, password).then(res => {
+      //     dispatch(userActions.authorize());
+      //     localStorage.setItem('token', res.token);
+      //     navigate('/');
       //   });
-        localStorage.setItem('token', 'test');
-        dispatch(userActions.authorize());
+      // for testing without backend
+      localStorage.setItem('token', 'test');
+      dispatch(userActions.authorize());
     } catch (error) {
       console.log(error);
     }
@@ -45,21 +45,23 @@ const LoginForm = () => {
   };
 
   return (
-    <div className="container">
+    <div className="form__container">
       {isAuthorized ? (
         <Navigate to='/' replace />
       ) : (
         <form onSubmit={handleLogin} className='column'>
           <input
             label="Username"
-            value={username}
+            value={email}
             onChange={(e) => setUsername(e.target.value)}
+            placeholder='Email'
             required
           />
           <input
             label="Password"
             type="password"
             value={password}
+            placeholder='Password'
             onChange={(e) => setPassword(e.target.value)}
             required
           />

@@ -5,7 +5,7 @@ const BookingPage = () => {
 
     return (
         <section>
-            <h3>Booking {id}</h3>
+            <h3>Make a booking {id}</h3>
         </section>
     )
 }

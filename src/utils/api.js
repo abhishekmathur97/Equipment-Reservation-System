@@ -1,8 +1,15 @@
-const BASE_URL = 'https://localhost:5000';
+const BASE_URL = 'http://localhost:3000';
   
 const request = (endpoint, options) => {
-    return fetch(`${BASE_URL}${endpoint}`, options);
+    return fetch(`${BASE_URL}${endpoint}`, options)
+        .then(res => check(res));
 };
+
+const check = (res) => {
+    if (res.ok) {
+        return res.json();
+    }
+}
 
 export const login = (email, password) => request(`/auth/login`, {
     method: 'POST',
@@ -23,11 +30,11 @@ export const signup = (email, password) => request(`/auth/signup`, {
     body: JSON.stringify({
         email: email,
         password: password,
-        role: "USER",
-        profile: {
-            name: getUserName(email),
-            gender: "Female"
-        }
+        // role: "USER",
+        // profile: {
+        //     name: getUserName(email),
+        //     gender: "Female"
+        // }
     }),
 });
 

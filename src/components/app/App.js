@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import { Routes, 
-         Route,
-         useLocation } from 'react-router-dom';
+         Route } from 'react-router-dom';
 import { HomePage,
          LoginPage,
          MyBookingsPage, 
@@ -13,11 +12,6 @@ import { userActions } from '../../store/userSlice';
 import { ProtectedRouterElement } from '../protected-router-element/ProtectedRouterElement';
 
 const App = () => {
-  const location = useLocation();
-
-  const locationState = location.state;
-  const background = locationState?.background;
-
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -30,12 +24,13 @@ const App = () => {
     <div className='app__container'>
         <Header />
         <main>
-            <Routes location={ background || location }>
+            <Routes>
               <Route path='/' element={<ProtectedRouterElement element={<HomePage />}/>}/>
               <Route path='/login' element={<LoginPage />}/>
               <Route path='/my-bookings' element={<ProtectedRouterElement element={<MyBookingsPage/>}/>}/>
               <Route path='/my-bookings/:id' element={<ProtectedRouterElement element={<BookingPage/>}/>}/>
               <Route path='/equipment/:id' element={<ProtectedRouterElement element={<EquipmentPage/>}/>}/>
+              <Route path='/book' element={<ProtectedRouterElement element={<BookingPage/>}/>}/>
             </Routes>
         </main>
     </div>

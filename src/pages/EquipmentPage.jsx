@@ -1,13 +1,15 @@
 import { useParams } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import EquipmentForm from '../components/equipment/EquimentForm';
 
 const EquipmentPage = () => {
     const { id } = useParams();
+    const equipmentList = useSelector(state => state.equipment.equipmentList);
+    const equipmentById = equipmentList.find((equipment) => equipment.id === parseInt(id));
 
     return (
-        <section>
-            <h3>Equipment {id}</h3>
-            <EquipmentForm />
+        <section className='form__container'>
+            <EquipmentForm equipment={equipmentById}/>
         </section>
     )
 }
