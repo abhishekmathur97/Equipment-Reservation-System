@@ -1,6 +1,6 @@
 import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import EquipmentForm from '../components/equipment/EquimentForm';
+import EquipmentForm from '../components/equipment/EquipmentForm';
 
 const EquipmentPage = () => {
     const { id } = useParams();

@@ -2,7 +2,11 @@ import defaultPNG from '../../assets/default.png';
 import { Link } from 'react-router-dom';
 import StatusTag from '../status-tag/StatusTag';
 
-const List = ({ items, tags = false, children }) => {
+const List = ({ 
+    items, 
+    type = 'equipment',
+    onClick,
+    onDelete }) => {
     return (
         <div>
         {
@@ -29,12 +33,17 @@ const List = ({ items, tags = false, children }) => {
                         ))
                     }
                     {
-                        tags && <StatusTag status={item.status}/>
+                        type === 'equipment' && <StatusTag status={item.status}/>
                     }
                     </div>
-                    { children }
+                    { type === 'equipment' &&
+                        <div className="row">
+                            <button className="tertiary" onClick={(e) => onClick(e, item.id)}>Book</button>
+                            <button className="error" onClick={(e) => onDelete(e, item.id)}>Delete</button>
+                        </div>
+                    }
                 </Link>
-            )) : <p>No items to display</p>
+            )) : <p>No items</p>
         }
         </div>
     )

@@ -5,7 +5,10 @@ import { HomePage,
          LoginPage,
          MyBookingsPage, 
          BookingPage, 
-         EquipmentPage} from '../../pages/index';
+         EquipmentPage,
+         SystemLogsPage,
+         RolesPage,
+        } from '../../pages/index';
 import Header from '../header/Header';
 import { useDispatch } from 'react-redux';
 import { userActions } from '../../store/userSlice';
@@ -27,10 +30,12 @@ const App = () => {
             <Routes>
               <Route path='/' element={<ProtectedRouterElement element={<HomePage />}/>}/>
               <Route path='/login' element={<LoginPage />}/>
+              <Route path='/logs' element={<ProtectedRouterElement element={<SystemLogsPage/>}/>}/>
+              <Route path='/user-roles' element={<ProtectedRouterElement element={<RolesPage/>}/>}/>
               <Route path='/my-bookings' element={<ProtectedRouterElement element={<MyBookingsPage/>}/>}/>
               <Route path='/my-bookings/:id' element={<ProtectedRouterElement element={<BookingPage/>}/>}/>
               <Route path='/equipment/:id' element={<ProtectedRouterElement element={<EquipmentPage/>}/>}/>
-              <Route path='/book' element={<ProtectedRouterElement element={<BookingPage/>}/>}/>
+              <Route path='/book/:id' element={<ProtectedRouterElement element={<BookingPage/>}/>}/>
             </Routes>
         </main>
     </div>

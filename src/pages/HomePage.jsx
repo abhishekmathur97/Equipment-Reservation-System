@@ -2,35 +2,37 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import List from '../components/list/List';
 import SearchBar from "../components/search-bar/SearchBar";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { equipmentActions } from "../store/equipmentSlice";
 
 const HomePage = () => {
     const equipmentList = useSelector(state => state.equipment.equipmentList);
-    const [ filteredList, setFilteredList ] = useState(equipmentList);
+    const [ filteredList, setFilteredList ] = useState([]);
 
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
-    const onClick = (e) => {
+    useEffect(() => {
+        setFilteredList(equipmentList);
+    }, [equipmentList])
+
+    const onClick = (e, id) => {
         e.preventDefault();
-        navigate('/book');
+        navigate(`/book/${id}`);
     }
 
-    const onDelete = (e) => {
+    const onDelete = (e, id) => {
         e.preventDefault();
+        dispatch(equipmentActions.deleteById(id));
+        console.log(equipmentList);
     }
 
     return (
         <section>
-            <SearchBar initialList={equipmentList} 
+            <SearchBar initialList={equipmentList}
                        filteredList={filteredList} 
                        setFilteredList={setFilteredList}/>
-            <List items={filteredList} tags={true}>
-                <div className="row">
-                    <button className="tertiary" onClick={onClick}>Book</button>
-                    <button className="error" onClick={onDelete}>Delete</button>
-                </div>
-            </List>
+            <List items={filteredList} type='equipment' onClick={onClick} onDelete={onDelete}/>
         </section>
     )
 }

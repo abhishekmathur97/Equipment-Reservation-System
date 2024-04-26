@@ -8,6 +8,10 @@ body {
   height: 100vh;
 }
 
+main {
+  margin: 5px;
+}
+
 .app__container {
   width: 100%;
   min-height: 100%;
@@ -94,8 +98,8 @@ a:hover {
 
 .form__container {
   box-sizing: border-box;
-  height: calc(100vh - 60px);
-  width: 100vw;
+  height: calc(100vh - 70px);
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -224,7 +228,7 @@ button:disabled {
   cursor: not-allowed;
 }
 
-h3 {
+h3, p {
   font-size: 24px;
   font-weight: bold;
   align-self: flex-start;

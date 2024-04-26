@@ -1,4 +1,4 @@
-const MyBookingsPage = () => {
+const SystemLogsPage = () => {
     return (
         <section>
             
@@ -6,4 +6,4 @@ const MyBookingsPage = () => {
     )
 }
 
-export default MyBookingsPage;
+export default SystemLogsPage;
