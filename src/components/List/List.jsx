@@ -1,34 +1,49 @@
 import defaultPNG from '../../assets/default.png';
+import { Link } from 'react-router-dom';
+import StatusTag from '../status-tag/StatusTag';
 
-const List = ({ items }) => {
+const List = ({ 
+    items, 
+    type = 'equipment',
+    onClick,
+    onDelete }) => {
     return (
         <div>
         {
             items.length ? items.map((item, id) => (
-                <div key={id} className="list__item">  
+                <Link key={id} to={`/equipment/${item.id}`} className="list__item">  
+                    <div className='list__item_content'>
                     {
                         Object.keys(item).map((key, id) => (
-                            <>
+                            <div key={id} className={key === 'image' ? 'item__img_container' : ''}>
                             {
                                 key === 'image' ? (
-                                    <div key={id} className='item__img_container'>
-                                        <img src={'image' in item ?
-                                            item['image'].length ? 
-                                            item['image'] : defaultPNG : 
-                                            defaultPNG} className='item__img'/>
-                                    </div>   
+                                    <img src={'image' in item ?
+                                        item['image'].length ? 
+                                        item['image'] : defaultPNG : 
+                                        defaultPNG} className='item__img'/>
                                 ) : (
-                                    <div key={id}>
+                                    <>
                                         <h4>{key}</h4>
                                         <span>{item[key]}</span>
-                                    </div>
+                                    </>
                                 )
                             }
-                            </>
+                            </div>
                         ))
                     }
-                </div>
-            )) : <p>No items to display</p>
+                    {
+                        type === 'equipment' && <StatusTag status={item.status}/>
+                    }
+                    </div>
+                    { type === 'equipment' &&
+                        <div className="row">
+                            <button className="tertiary" onClick={(e) => onClick(e, item.id)}>Book</button>
+                            <button className="error" onClick={(e) => onDelete(e, item.id)}>Delete</button>
+                        </div>
+                    }
+                </Link>
+            )) : <p>No items</p>
         }
         </div>
     )

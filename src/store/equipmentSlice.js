@@ -29,9 +29,12 @@ export const equipmentSlice = createSlice({
   name: 'equipment',
   initialState,
   reducers: {
+    deleteById: (state, action) => (
+      { ...state, equipmentList: state.equipmentList.filter(equipment => equipment.id !== action.payload) }
+    ),
   },
 })
 
-export const { } = equipmentSlice.actions;
+export const equipmentActions = equipmentSlice.actions;
 
 export default equipmentSlice.reducer;
