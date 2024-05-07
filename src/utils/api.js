@@ -5,10 +5,12 @@ const request = (endpoint, options) => {
         .then(res => check(res));
 };
 
-const check = (res) => {
+const check = async (res) => {
     if (res.ok) {
         return res.json();
     }
+
+    return new Error();
 }
 
 export const login = (email, password) => request(`/auth/login`, {

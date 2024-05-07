@@ -24,7 +24,6 @@ const HomePage = () => {
     const onDelete = (e, id) => {
         e.preventDefault();
         dispatch(equipmentActions.deleteById(id));
-        console.log(equipmentList);
     }
 
     return (
