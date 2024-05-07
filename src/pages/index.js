@@ -5,6 +5,9 @@ import BookingPage from "./BookingPage";
 import EquipmentPage from "./EquipmentPage";
 import SystemLogsPage from "./SystemLogsPage";
 import RolesPage from "./RolesPage";
+import UserRolePage from "./UserRolePage";
+import BookingRequestsPage from "./BookingRequestsPage";
+import BookingRequestPage from "./BookingRequestPage";
 
 export {
     HomePage,
@@ -14,4 +17,7 @@ export {
     EquipmentPage,
     SystemLogsPage,
     RolesPage,
+    UserRolePage,
+    BookingRequestsPage,
+    BookingRequestPage,
 }

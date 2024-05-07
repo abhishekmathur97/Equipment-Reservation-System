@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import List from '../components/List/List';
+import List from '../components/list/List';
 import SearchBar from "../components/search-bar/SearchBar";
 import { useEffect, useState } from "react";
 import { equipmentActions } from "../store/equipmentSlice";
@@ -18,13 +18,12 @@ const HomePage = () => {
 
     const onClick = (e, id) => {
         e.preventDefault();
-        navigate(`/book/${id}`);
+        navigate(`/book/`);
     }
 
     const onDelete = (e, id) => {
         e.preventDefault();
         dispatch(equipmentActions.deleteById(id));
-        console.log(equipmentList);
     }
 
     return (

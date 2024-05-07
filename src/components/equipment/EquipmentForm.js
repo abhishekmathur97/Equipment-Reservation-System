@@ -4,7 +4,7 @@ const EquipmentForm = ({ equipment = null }) => {
   const [name, setName] = useState(equipment ? equipment.name : '');
   const [description, setDescription] = useState(equipment ? equipment.description : '');
   const [total, setTotal] = useState(equipment ? equipment.total : 0);
-  const [isAdmin, setIsAdmin] = useState(false);
+  const [isAdmin, setIsAdmin] = useState(true);
 
   const handleSubmit = (event) => {
     event.preventDefault();

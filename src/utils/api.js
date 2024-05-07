@@ -5,10 +5,12 @@ const request = (endpoint, options) => {
         .then(res => check(res));
 };
 
-const check = (res) => {
+const check = async (res) => {
     if (res.ok) {
         return res.json();
     }
+
+    return new Error();
 }
 
 export const login = (email, password) => request(`/auth/login`, {
@@ -38,6 +40,13 @@ export const signup = (email, password) => request(`/auth/signup`, {
     }),
 });
 
-function getUserName(email) {
-    return email.split('@')[0];
-}
+export const getUsers = (token) => request(`/v1/users`, {
+    method: 'GET',
+    headers: {
+        'x-access-token': token,
+    },
+});
+
+// function getUserName(email) {
+//     return email.split('@')[0];
+// }
