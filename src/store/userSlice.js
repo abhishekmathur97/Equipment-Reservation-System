@@ -2,6 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
   isAuthorized: false,
+  users: [],
 }
 
 export const userSlice = createSlice({
@@ -13,6 +14,9 @@ export const userSlice = createSlice({
     },
     signout: (state) => {
         state.isAuthorized = false
+    },
+    setUsers: (state, action) => {
+        state.users = action.payload.map(user => ({ id: user._id, email: user.email }));
     },
   },
 })

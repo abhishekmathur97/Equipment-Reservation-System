@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const BookingRequest = ({ bookingDates, bookedBy, equipmentId }) => {
+const BookingRequest = ({ request }) => {
   // State to track the status of the booking request
   const [status, setStatus] = useState('pending');
 
@@ -15,27 +15,20 @@ const BookingRequest = ({ bookingDates, bookedBy, equipmentId }) => {
   };
 
   return (
-    <div className="booking-request">
-      <div>
-        <strong>Booking Dates:</strong> {bookingDates}
-      </div>
-      <div>
-        <strong>Booked By:</strong> {bookedBy}
-      </div>
-      <div>
-        <strong>Equipment ID:</strong> {equipmentId}
-      </div>
-      <div>
-        <strong>Status:</strong> {status}
-      </div>
+    <form className="column" style={{ alignItems: 'flex-start' }}>
+      <h3>View request</h3>
+      <strong>Booking Dates:</strong> {request.bookingDates}
+      <strong>Booked By:</strong> {request.bookedBy}
+      <strong>Equipment ID:</strong> {request.equipmentId}
+      <strong>Status:</strong> {request.status}
       {/* Render buttons based on the status */}
       {status === 'pending' && (
-        <div>
-          <button onClick={handleAccept}>Accept</button>
-          <button onClick={handleDecline}>Decline</button>
+        <div className='row'>
+          <button onClick={handleAccept} className='primary'>Accept</button>
+          <button onClick={handleDecline} className='error'>Decline</button>
         </div>
       )}
-    </div>
+    </form>
   );
 };
 
