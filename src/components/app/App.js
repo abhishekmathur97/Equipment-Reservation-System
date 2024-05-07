@@ -9,7 +9,7 @@ import { HomePage,
          SystemLogsPage,
          RolesPage,
         } from '../../pages/index';
-import Header from '../header/Header';
+import Header from '../Header/Header';
 import { useDispatch } from 'react-redux';
 import { userActions } from '../../store/userSlice';
 import { ProtectedRouterElement } from '../protected-router-element/ProtectedRouterElement';

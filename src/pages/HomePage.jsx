@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import List from '../components/list/List';
+import List from '../components/List/List';
 import SearchBar from "../components/search-bar/SearchBar";
 import { useEffect, useState } from "react";
 import { equipmentActions } from "../store/equipmentSlice";
