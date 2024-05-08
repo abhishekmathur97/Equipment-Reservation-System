@@ -1,13 +1,265 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  padding: 0;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+#root {
+  max-width: 100vw;
+  height: 100vh;
+}
+
+main {
+  margin: 5px;
+}
+
+.app__container {
+  width: 100%;
+  min-height: 100%;
+}
+
+header {
+  box-sizing: border-box;
+  width: 100%;
+  height: 60px;
+  background-color: rgb(39, 35, 35);
+  color: white;
+  padding: 5px 20px;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+
+img {
+  height: 100%;
+  object-fit: fit-content;
+}
+
+a:hover {
+  cursor: pointer;
+}
+
+.list__item {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin: 10px;
+  padding: 10px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  gap: 15px;
+  justify-content: space-between;
+  position: relative;
+}
+
+.list__item_content {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin: 10px;
+  padding: 10px;
+  background-color: #fff;
+  border-radius: 8px;
+  gap: 15px;
+}
+
+.list__item:hover {
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  transform: translateY(-4px);
+}
+
+.item__img_container {
+  height: 80px;
+  width: 80px;
+  overflow: hidden;
+  border-radius: 50%;
+  order: -1;
+}
+
+.item__img {
+  height: 100%;
+  transform: translateX(-31px);
+  object-fit: fit-content;
+}
+
+.form__container {
+  box-sizing: border-box;
+  height: calc(100vh - 70px);
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+form {
+  width: 50%;
+}
+
+.nav {
+  display: flex;
+  gap: 20px;
+}
+
+.link, a {
+  text-decoration: none;
+}
+
+.link {
+  color: white;
+}
+
+a {
+  color: black;
+}
+
+.tag {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  border-radius: 15px;
+  font-size: 14px;
+  padding: 5px 10px;
+}
+
+.success {
+  background-color: rgb(105, 145, 73);
+  color: white;
+}
+
+.error {
+  background-color: red;
+  color: white;
+}
+
+.default {
+  background-color: rgb(224, 224, 106);
+  color: black;
+}
+
+.warning {
+  background-color: brown;
+  color: white;
+}
+
+input, textarea {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-bottom: 1px solid #ccc;
+  font-size: 16px;
+}
+
+input:focus, textarea:focus {
+  outline: none;
+  border: none;
+  border-bottom: 1px solid dodgerblue;
+}
+
+:root {
+  --button-padding: 10px 20px;
+  --button-font-size: 14px;
+  --button-border-radius: 4px;
+  --button-background-color-primary: dodgerblue;
+  --button-color-primary: white;
+  --button-border-primary: none;
+}
+
+button {
+  display: inline-block;
+  padding: var(--button-padding);
+  font-size: var(--button-font-size);
+  font-weight: bold;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  border-radius: var(--button-border-radius);
+  transition: opacity 0.3s ease;
+}
+
+button.primary {
+  background-color: var(--button-background-color-primary);
+  color: var(--button-color-primary);
+  border: var(--button-border-primary);
+}
+
+button.secondary {
+  background-color: #f8f9fa;
+  color: #333;
+  border: 1px solid #ccc;
+}
+
+button.tertiary {
+  background-color: transparent;
+  color: dodgerblue;
+  border: 1px solid dodgerblue;
+}
+
+button.error {
+  background-color: transparent;
+  color: red;
+  border: 1px solid red;
+}
+
+button:hover {
+  opacity: 0.8;
+}
+
+button:focus {
+  outline: none;
+}
+
+button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+h3, p {
+  font-size: 24px;
+  font-weight: bold;
+  align-self: flex-start;
+  position: relative;
+}
+
+h3::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -5px;
+  width: 150px;
+  height: 2px;
+  background-color: dodgerblue;
+}
+
+.search-bar {
+  display: flex;
+  align-items: center;
+  max-width: 100vw;
+  padding: 2px 5px;
+  margin: 5px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  background-color: #fff;
+}
+
+.search-bar input[type="text"] {
+  flex: 1;
+  padding: 8px;
+  border: none;
+  border-radius: 4px 0 0 4px;
+  font-size: 16px;
 }
