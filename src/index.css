@@ -155,7 +155,7 @@ a {
   color: white;
 }
 
-input, textarea {
+input, textarea, select {
   box-sizing: border-box;
   width: 100%;
   padding: 10px;

@@ -8,6 +8,9 @@ import { HomePage,
          EquipmentPage,
          SystemLogsPage,
          RolesPage,
+         UserRolePage,
+         BookingRequestsPage,
+         BookingRequestPage,
         } from '../../pages/index';
 import Header from '../header/Header';
 import { useDispatch } from 'react-redux';
@@ -32,10 +35,14 @@ const App = () => {
               <Route path='/login' element={<LoginPage />}/>
               <Route path='/logs' element={<ProtectedRouterElement element={<SystemLogsPage/>}/>}/>
               <Route path='/user-roles' element={<ProtectedRouterElement element={<RolesPage/>}/>}/>
+              <Route path='/user-roles/:id' element={<ProtectedRouterElement element={<UserRolePage/>}/>}/>
               <Route path='/my-bookings' element={<ProtectedRouterElement element={<MyBookingsPage/>}/>}/>
               <Route path='/my-bookings/:id' element={<ProtectedRouterElement element={<BookingPage/>}/>}/>
               <Route path='/equipment/:id' element={<ProtectedRouterElement element={<EquipmentPage/>}/>}/>
+              <Route path='/book/' element={<ProtectedRouterElement element={<BookingPage/>}/>}/>
               <Route path='/book/:id' element={<ProtectedRouterElement element={<BookingPage/>}/>}/>
+              <Route path='/requests' element={<ProtectedRouterElement element={<BookingRequestsPage/>}/>}/>
+              <Route path='/requests/:id' element={<ProtectedRouterElement element={<BookingRequestPage/>}/>}/>
             </Routes>
         </main>
     </div>

@@ -11,7 +11,10 @@ const List = ({
         <div>
         {
             items.length ? items.map((item, id) => (
-                <Link key={id} to={`/equipment/${item.id}`} className="list__item">  
+                <Link key={id} to={type === 'equipment' ? `/equipment/${item.id}` :
+                    type === 'users' ? `/user-roles/${item.id}` :
+                    type === 'requests' ? `/requests/${item.id}` :
+                    type === 'bookings' ? `/my-bookings/${item.id}` : '/'} className="list__item">  
                     <div className='list__item_content'>
                     {
                         Object.keys(item).map((key, id) => (
@@ -33,7 +36,7 @@ const List = ({
                         ))
                     }
                     {
-                        type === 'equipment' && <StatusTag status={item.status}/>
+                        (type === 'equipment' || type === 'requests') && <StatusTag status={item.status}/>
                     }
                     </div>
                     { type === 'equipment' &&

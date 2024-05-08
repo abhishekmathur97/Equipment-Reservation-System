@@ -18,13 +18,12 @@ const HomePage = () => {
 
     const onClick = (e, id) => {
         e.preventDefault();
-        navigate(`/book/${id}`);
+        navigate(`/book/`);
     }
 
     const onDelete = (e, id) => {
         e.preventDefault();
         dispatch(equipmentActions.deleteById(id));
-        console.log(equipmentList);
     }
 
     return (

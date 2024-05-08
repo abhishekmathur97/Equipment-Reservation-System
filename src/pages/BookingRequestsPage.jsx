@@ -1,11 +1,11 @@
 import React, { useEffect, useState} from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { requestActions } from '../store/requestSlice';
 import SearchBar from '../components/search-bar/SearchBar';
 import List from '../components/list/List';
-import { bookingActions } from '../store/bookingSlice';
 
-const dummyBookings = [{
+const dummyRequests = [{
     id: 1,
     bookedBy: 'galinaleespb@gmail.com',
     bookingDates: null,  
@@ -13,8 +13,8 @@ const dummyBookings = [{
     status: 'pending',
 }];
 
-const MyBookingsPage = () => {
-    const bookings = useSelector(state => state.bookings.bookingList);
+const BookingRequestsPage = () => {
+    const requests = useSelector(state => state.requests.requestList);
     const [ filteredList, setFilteredList ] = useState([]);
     
     const navigate = useNavigate();
@@ -22,21 +22,21 @@ const MyBookingsPage = () => {
 
     const onClick = (e, id) => {
         e.preventDefault();
-        navigate(`/my-bookings/${id}`);
+        navigate(`/request/${id}`);
     }
 
     useEffect(() => {
-        setFilteredList(bookings);
-    }, [bookings])
+        setFilteredList(requests);
+    }, [requests])
 
-    useEffect(() => {
+    useEffect((e) => {
         try {
           // with backend
         //   getUsers(localStorage.getItem('token')).then(res => {
         //     dispatch(userActions.setUsers(res));
         //   });
           // for testing without backend
-          dispatch(bookingActions.setBookings(dummyBookings));
+          dispatch(requestActions.setRequests(dummyRequests));
         } catch (error) {
           console.log(error);
         }
@@ -44,12 +44,12 @@ const MyBookingsPage = () => {
 
     return (
         <section>
-            <SearchBar initialList={bookings}
+            <SearchBar initialList={requests}
                        filteredList={filteredList} 
                        setFilteredList={setFilteredList}/>
-            <List items={filteredList} type='bookings' onClick={onClick}/>
+            <List items={filteredList} type='requests' onClick={onClick}/>
         </section>
     )
 }
 
-export default MyBookingsPage;
+export default BookingRequestsPage;

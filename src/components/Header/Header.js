@@ -20,6 +20,7 @@ const Header = () => {
                     <Link to='/' className='link'>Main</Link>
                     <Link to='/my-bookings' className='link'>My bookings</Link>
                     <Link to='/user-roles' className='link'>User roles</Link>
+                    <Link to='/requests' className='link'>Requests</Link>
                     <Link to='/logs' className='link'>Logs</Link>
                     <a onClick={handleSingout} className='link'>Sign out</a>
                   </> : '' }
