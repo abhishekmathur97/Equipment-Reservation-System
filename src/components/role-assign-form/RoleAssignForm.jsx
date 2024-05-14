@@ -1,11 +1,17 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { userActions } from '../../store/userSlice';
 
 const RoleAssignForm = ({
   users,
   roles, 
   onSearchUser, 
   user }) => {
-  const [selectedRole, setSelectedRole] = useState('');
+  const [selectedRole, setSelectedRole] = useState(user.role);
+
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const handleRoleChange = (event) => {
     setSelectedRole(event.target.value);
@@ -13,6 +19,13 @@ const RoleAssignForm = ({
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    dispatch(userActions.assignRole({
+      userId: user.id,
+      role: selectedRole
+    }));
+
+    navigate('/user-roles');
   }
 
   return (

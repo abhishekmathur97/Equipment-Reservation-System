@@ -5,16 +5,8 @@ import { requestActions } from '../store/requestSlice';
 import SearchBar from '../components/search-bar/SearchBar';
 import List from '../components/list/List';
 
-const dummyRequests = [{
-    id: 1,
-    bookedBy: 'galinaleespb@gmail.com',
-    bookingDates: null,  
-    equipmentId: 1,
-    status: 'pending',
-}];
-
 const BookingRequestsPage = () => {
-    const requests = useSelector(state => state.requests.requestList);
+    const requests = useSelector(state => state.bookings.bookingList);
     const [ filteredList, setFilteredList ] = useState([]);
     
     const navigate = useNavigate();
@@ -36,7 +28,7 @@ const BookingRequestsPage = () => {
         //     dispatch(userActions.setUsers(res));
         //   });
           // for testing without backend
-          dispatch(requestActions.setRequests(dummyRequests));
+          //dispatch(requestActions.setRequests(dummyRequests));
         } catch (error) {
           console.log(error);
         }

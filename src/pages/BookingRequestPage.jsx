@@ -4,8 +4,8 @@ import BookingRequest from '../components/booking/BookingRequest';
 
 const BookingRequestPage = () => {
     const { id } = useParams();
-    const requestsList = useSelector(state => state.requests.requestList);
-    const requestById = requestsList.find((request) => request.id === parseInt(id));
+    const requestsList = useSelector(state => state.bookings.bookingList);
+    const requestById = requestsList.find((request) => request.id === id);
 
     return (
         <section className='form__container'>

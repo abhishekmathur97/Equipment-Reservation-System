@@ -7,13 +7,6 @@ import { userActions } from "../store/userSlice";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-const dummyUsers = [
-    { id: 1, name: 'John Doe' },
-    { id: 2, name: 'Jane Smith' },
-    { id: 3, name: 'Alice Johnson' },
-    { id: 4, name: 'Bob Williams' },
-  ];
-
 const RolesPage = () => {
     const users = useSelector(state => state.user.users);
     const [ filteredList, setFilteredList ] = useState([]);
@@ -33,11 +26,9 @@ const RolesPage = () => {
     useEffect((e) => {
         try {
           // with backend
-          getUsers(localStorage.getItem('token')).then(res => {
-            dispatch(userActions.setUsers(res));
-          });
-          // for testing without backend
-          // dispatch(userActions.setUsers(dummyUsers));
+          // getUsers(localStorage.getItem('token')).then(res => {
+          //   dispatch(userActions.setUsers(res));
+          // });
         } catch (error) {
           console.log(error);
         }

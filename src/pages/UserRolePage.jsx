@@ -3,7 +3,7 @@ import RoleAssignForm from '../components/role-assign-form/RoleAssignForm';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
-const roles = ['Admin', 'User', 'Editor', 'Moderator'];
+const roles = ['ADMIN', 'USER'];
 
 const UserRolePage = () => {
     const { id } = useParams();
@@ -16,7 +16,8 @@ const UserRolePage = () => {
 
     return (
         <section className='form__container'>
-            <RoleAssignForm users={users}
+            <RoleAssignForm 
+                users={users}
                 roles={roles} 
                 onSearchUser={handleSearchUser} 
                 user={userById}/>

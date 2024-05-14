@@ -5,16 +5,12 @@ import SearchBar from '../components/search-bar/SearchBar';
 import List from '../components/list/List';
 import { bookingActions } from '../store/bookingSlice';
 
-const dummyBookings = [{
-    id: 1,
-    bookedBy: 'galinaleespb@gmail.com',
-    bookingDates: null,  
-    equipmentId: 1,
-    status: 'pending',
-}];
-
 const MyBookingsPage = () => {
+    const currentUser = useSelector(state => state.user.currentUser);
     const bookings = useSelector(state => state.bookings.bookingList);
+
+    const myBookings = bookings.filter(booking => booking.bookedBy === currentUser?.email);
+        
     const [ filteredList, setFilteredList ] = useState([]);
     
     const navigate = useNavigate();
@@ -26,28 +22,32 @@ const MyBookingsPage = () => {
     }
 
     useEffect(() => {
-        setFilteredList(bookings);
+        setFilteredList(myBookings);
     }, [bookings])
 
-    useEffect(() => {
-        try {
-          // with backend
-        //   getUsers(localStorage.getItem('token')).then(res => {
-        //     dispatch(userActions.setUsers(res));
-        //   });
-          // for testing without backend
-          dispatch(bookingActions.setBookings(dummyBookings));
-        } catch (error) {
-          console.log(error);
-        }
-    }, []);
+    // useEffect(() => {
+    //     try {
+    //       // with backend
+    //     //   getUsers(localStorage.getItem('token')).then(res => {
+    //     //     dispatch(userActions.setUsers(res));
+    //     //   });
+    //       // for testing without backend
+    //     } catch (error) {
+    //       console.log(error);
+    //     }
+    // }, []);
+
+    const onDelete = (e, id) => {
+        e.preventDefault();
+        dispatch(bookingActions.deleteById(id));
+    }
 
     return (
         <section>
-            <SearchBar initialList={bookings}
+            <SearchBar initialList={myBookings}
                        filteredList={filteredList} 
                        setFilteredList={setFilteredList}/>
-            <List items={filteredList} type='bookings' onClick={onClick}/>
+            <List items={filteredList} type='bookings' onClick={onClick} onDelete={onDelete}/>
         </section>
     )
 }

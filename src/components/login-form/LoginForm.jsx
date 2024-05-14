@@ -19,20 +19,21 @@ const LoginForm = () => {
 
     try {
       // with backend
-      isSignUp ?
-        signup(email, password).then(res => {
-          dispatch(userActions.authorize());
-          localStorage.setItem('token', res.token);
-          navigate('/');
-        }) :
-        login(email, password).then(res => {
-          dispatch(userActions.authorize());
-          localStorage.setItem('token', res.token);
-          navigate('/');
-        });
+      // isSignUp ?
+      //   signup(email, password).then(res => {
+      //     dispatch(userActions.authorize());
+      //     localStorage.setItem('token', res.token);
+      //     navigate('/');
+      //   }) :
+      //   login(email, password).then(res => {
+      //     dispatch(userActions.authorize());
+      //     localStorage.setItem('token', res.token);
+      //     navigate('/');
+      //   });
       // for testing without backend
-      // localStorage.setItem('token', 'test');
-      // dispatch(userActions.authorize());
+      localStorage.setItem('token', 'test');
+      dispatch(userActions.authorize(email));
+      dispatch(userActions.setCurrentUser(email));
     } catch (error) {
       console.log(error);
     }

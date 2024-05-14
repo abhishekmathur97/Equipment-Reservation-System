@@ -1,20 +1,45 @@
 import defaultPNG from '../../assets/default.png';
 import { Link } from 'react-router-dom';
 import StatusTag from '../status-tag/StatusTag';
+import { useSelector } from 'react-redux';
 
 const List = ({ 
     items, 
     type = 'equipment',
     onClick,
     onDelete }) => {
+    
+    const currentUser = useSelector(state => state.user.currentUser);
+
+    const getURL = (item) => {
+        switch (type) {
+            case 'equipment': {
+                if (currentUser?.role !== 'ADMIN')
+                    return null;
+
+                return `/equipment/${item.id}`;
+            }
+            case 'users': {
+                return `/user-roles/${item.id}`
+            }
+            case 'requests': {
+                return `/requests/${item.id}`
+            }
+            case 'bookings': {
+                return `/my-bookings/${item.id}`
+            }
+            default: {
+                return '/'
+            }
+        }
+    }
+
     return (
         <div>
         {
             items.length ? items.map((item, id) => (
-                <Link key={id} to={type === 'equipment' ? `/equipment/${item.id}` :
-                    type === 'users' ? `/user-roles/${item.id}` :
-                    type === 'requests' ? `/requests/${item.id}` :
-                    type === 'bookings' ? `/my-bookings/${item.id}` : '/'} className="list__item">  
+                <Link key={id} to={getURL(item)} 
+                    className="list__item">  
                     <div className='list__item_content'>
                     {
                         Object.keys(item).map((key, id) => (
@@ -42,6 +67,12 @@ const List = ({
                     { type === 'equipment' &&
                         <div className="row">
                             <button className="tertiary" onClick={(e) => onClick(e, item.id)}>Book</button>
+                            <button className="error" onClick={(e) => onDelete(e, item.id)}>Delete</button>
+                        </div>
+                    }
+
+                    { type === 'bookings' &&
+                        <div className="row">
                             <button className="error" onClick={(e) => onDelete(e, item.id)}>Delete</button>
                         </div>
                     }
