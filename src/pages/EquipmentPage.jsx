@@ -5,7 +5,7 @@ import EquipmentForm from '../components/equipment/EquipmentForm';
 const EquipmentPage = () => {
     const { id } = useParams();
     const equipmentList = useSelector(state => state.equipment.equipmentList);
-    const equipmentById = equipmentList.find((equipment) => equipment.id === parseInt(id));
+    const equipmentById = equipmentList.find((equipment) => equipment.id === id);
 
     return (
         <section className='form__container'>

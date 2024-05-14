@@ -7,6 +7,10 @@ const StatusTag = ({ status }) => {
                 return 'warning';
             case 'in use':
                 return 'error';
+            case 'accepted':
+                return 'success';
+            case 'declined':
+                return 'error';
             default:
                 return 'default';
         }
